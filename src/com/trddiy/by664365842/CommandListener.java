@@ -10,6 +10,7 @@ public class CommandListener implements CommandExecutor {
 	public ItemForXP ifx;
 	public CommandListener(Core plugin) {
 		this.plugin = plugin;
+		this.ifx = new ItemForXP(plugin);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
