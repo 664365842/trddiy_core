@@ -26,9 +26,9 @@ public class CommandListener implements CommandExecutor {
 			plugin.sendtoserver("错误!本命令不支持控制台使用!");
 			return true;
 		} else {
+			Player p = (Player) sender;
 			if (args.length != 0) {
 				String arg1 = args[0];
-				Player p = (Player) sender;
 				if (arg1.equals("reload") && Core.permission.has(p, "trd.reload")) {
 					plugin.reloadConfig();
 					plugin.sendtoserver("设置已由玩家 " + p.getName() + " 重载");
@@ -37,6 +37,20 @@ public class CommandListener implements CommandExecutor {
 				if (arg1.equals("exp") && Core.permission.has(p, "trd.exp")) {
 					ifx.getItem(p, Integer.valueOf(args[1]));
 				}
+				if(arg1.equals("help")){
+					plugin.sendtoplayer(p, "===== Trddiy核心插件帮助 =====");
+					plugin.sendtoplayer(p, "/trd exp 进行经验兑换");
+					plugin.sendtoplayer(p, "/trd help 打开帮助界面");
+					plugin.sendtoplayer(p, "/trd xiaodai 获得小呆的节操");
+				}
+				if(arg1.equals("xiaodai")){
+					plugin.sendtoplayer(p, "抱歉,功能未开放.");
+				}
+			}else{
+				plugin.sendtoplayer(p, "===== Trddiy核心插件帮助 =====");
+				plugin.sendtoplayer(p, "/trd exp 进行经验兑换");
+				plugin.sendtoplayer(p, "/trd help 打开帮助界面");
+				plugin.sendtoplayer(p, "/trd xiaodai 获得小呆的节操");
 			}
 		}
 		return true;
