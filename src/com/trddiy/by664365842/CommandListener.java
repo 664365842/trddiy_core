@@ -35,7 +35,8 @@ public class CommandListener implements CommandExecutor {
 					plugin.sendtoplayer(p, "设置已重载");
 				}
 				if (arg1.equals("exp") && Core.permission.has(p, "trd.exp")) {
-					ifx.getItem(p, Integer.valueOf(args[1]));
+					plugin.sendtoserver("抱歉,功能未开放");
+					//ifx.getItem(p, Integer.valueOf(args[1]));
 				}
 				if(arg1.equals("help")){
 					plugin.sendtoplayer(p, "===== Trddiy核心插件帮助 =====");

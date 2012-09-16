@@ -114,13 +114,20 @@ public class Core extends JavaPlugin {
 		return hr;
 	}
 
-	// 增加文字头(玩家)
+	/**
+	 * 向玩家发送带前缀的信息
+	 * @param p 是玩家
+	 * @param s 是要发送的字符串
+	 */
 	public void sendtoplayer(Player p, String s) {
 		String title = ChatColor.GREEN + "[" + ChatColor.GOLD + "Trd核心插件"
 				+ ChatColor.GREEN + "] " + ChatColor.WHITE;
 		p.sendMessage(title + s);
 	}
-
+	/**
+	 * 向控制台发送带前缀的信息
+	 * @param s 是要发送的字符串
+	 */
 	public void sendtoserver(String s) {
 		String title = ChatColor.GREEN + "[" + ChatColor.GOLD + "Trd核心插件"
 				+ ChatColor.GREEN + "] " + ChatColor.WHITE;

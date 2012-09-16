@@ -3,7 +3,7 @@ package com.trddiy.by664365842;
 import java.util.Map;
 import java.util.Set;
 
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,20 +12,19 @@ import com.garbagemule.MobArena.ArenaClass;
 import com.garbagemule.MobArena.events.ArenaPlayerJoinEvent;
 import com.garbagemule.MobArena.events.NewWaveEvent;
 import com.garbagemule.MobArena.framework.Arena;
-import com.garbagemule.MobArena.waves.MABoss;
 import com.garbagemule.MobArena.waves.enums.WaveType;
-import com.garbagemule.MobArena.waves.types.BossWave;
 import com.herocraftonline.heroes.characters.CharacterManager;
 import com.herocraftonline.heroes.characters.Hero;
 
 public class MobArenaListener implements Listener {
 	private Core plugin;
-	private CharacterManager chm; 
+	private CharacterManager chm;
 
 	public MobArenaListener(Core plugin) {
 		this.plugin = plugin;
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
+
 	@EventHandler
 	public void onWave(NewWaveEvent event) {
 		// TODO 让boss波之后再给经验
@@ -33,10 +32,6 @@ public class MobArenaListener implements Listener {
 		Arena arena = event.getArena();
 		Set<Player> ap = arena.getPlayersInArena();
 		if (event.getWave().getType() == WaveType.BOSS) {
-			BossWave bw = (BossWave)(event.getWave());
-			for(MABoss mb : bw.getMABosses()){
-				sethealth(mb.getEntity(),mb.getMaxHealth());
-			}
 			for (Player p : ap) {
 				if (p != null) {
 					addexp(p, wn);
@@ -44,11 +39,12 @@ public class MobArenaListener implements Listener {
 			}
 		}
 	}
+
 	@EventHandler
-	public void onJoin(ArenaPlayerJoinEvent event){
-		Arena a =event.getArena();
+	public void onJoin(ArenaPlayerJoinEvent event) {
+		Arena a = event.getArena();
 		Player p = event.getPlayer();
-		setclass(p,a);
+		setclass(p, a);
 	}
 
 	public void addexp(Player p, int wn) {
@@ -59,26 +55,32 @@ public class MobArenaListener implements Listener {
 		h.syncExperience();
 		plugin.sendtoplayer(p, "你获得了奖励: " + wn * waven + " 经验");
 	}
+
 	/**
 	 * 设置玩家的pve职业,若无符合条件的职业则设置为初心者
-	 * @param p 是玩家
-	 * @param a 是pve场地
+	 * 
+	 * @param p
+	 *            是玩家
+	 * @param a
+	 *            是pve场地
 	 */
-	public void setclass(Player p,Arena a){
+	public void setclass(final Player p, final Arena a) {
 		chm = plugin.getheroesplugin().getCharacterManager();
 		Hero h = chm.getHero(p);
-		String s = h.getHeroClass().getName();
-		Map<String, ArenaClass> map = a.getClasses();
-		if(map.containsValue(s)){
-			a.assignClass(p, s);
-		}else{
-			a.assignClass(p, "初心者");
-		}
-		
+		final String s = h.getHeroClass().getName();
+		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+					public void run() {
+						//plugin.sendtoplayer(p, a.getArenaPlayer(p).toString());
+						plugin.sendtoplayer(p, "检测到职业: " + ChatColor.GOLD+s);
+						Map<String, ArenaClass> map = a.getClasses();
+						if (map.containsKey(s)) {
+							a.assignClass(p, s);
+							plugin.sendtoplayer(p, "设置职业成功.");
+						} else {
+							a.assignClass(p, "初心者");
+							plugin.sendtoplayer(p, "未找到相应职业,设置为初心者.");
+						}
+					}
+				}, 1L);
 	}
-	public void sethealth(LivingEntity e,int health){
-		chm = plugin.getheroesplugin().getCharacterManager();
-		chm.getCharacter(e).setHealth(health);
-	}
-
 }
