@@ -44,6 +44,7 @@ public class Core extends JavaPlugin {
 		if (c == true) {
 			new RestrictItem(this);
 		}
+		new SignListener(this);
 		sendtoserver("单武器限定: " + a);
 		sendtoserver("武器限制: " + c);
 		setupHeroes();// 加载heroes相关

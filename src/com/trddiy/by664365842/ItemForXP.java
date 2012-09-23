@@ -1,5 +1,6 @@
 package com.trddiy.by664365842;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -36,8 +37,10 @@ public class ItemForXP {
 		Hero h = plugin.getheroesplugin().getCharacterManager().getHero(p);
 		h.addExp(xp * a, h.getHeroClass());
 		h.syncExperience();
-		plugin.sendtoplayer(p, "你使用 " + a + " 个 "
-				+ is.getType().toString().toLowerCase() + " 兑换了 " + xp * a
+		plugin.sendtoplayer(p, "你使用 " + ChatColor.GREEN + a + ChatColor.WHITE
+				+ " 个 " + ChatColor.GREEN
+				+ is.getType().toString().toLowerCase() + ChatColor.WHITE
+				+ " 兑换了 " + ChatColor.GREEN + xp * a + ChatColor.WHITE
 				+ " 点经验.");
 	}
 }
