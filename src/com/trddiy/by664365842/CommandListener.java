@@ -34,12 +34,12 @@ public class CommandListener implements CommandExecutor {
 					plugin.sendtoserver("设置已由玩家 " + p.getName() + " 重载");
 					plugin.sendtoplayer(p, "设置已重载");
 				}
-				if (args.length >=2&&arg1.equals("exp") && Core.permission.has(p, "trd.exp")) {
+				if (arg1.equals("exp") && Core.permission.has(p, "trd.exp")) {
 					//plugin.sendtoplayer(p,"抱歉,功能未开放");
-					if(args[1] != null){
+					if(args.length >=2&&args[1] != null){
 					ifx.getItem(p, Integer.valueOf(args[1]));
 					}else{
-						plugin.sendtoplayer(p, "请输入要兑换的物品数!");
+						plugin.sendtoplayer(p, "请输入要用来兑换的物品数!");
 					}
 				}
 				if(arg1.equals("help")){
