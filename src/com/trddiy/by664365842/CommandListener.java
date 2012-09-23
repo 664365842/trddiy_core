@@ -34,7 +34,7 @@ public class CommandListener implements CommandExecutor {
 					plugin.sendtoserver("设置已由玩家 " + p.getName() + " 重载");
 					plugin.sendtoplayer(p, "设置已重载");
 				}
-				if (arg1.equals("exp") && Core.permission.has(p, "trd.exp")) {
+				if (args.length >=2&&arg1.equals("exp") && Core.permission.has(p, "trd.exp")) {
 					//plugin.sendtoplayer(p,"抱歉,功能未开放");
 					if(args[1] != null){
 					ifx.getItem(p, Integer.valueOf(args[1]));

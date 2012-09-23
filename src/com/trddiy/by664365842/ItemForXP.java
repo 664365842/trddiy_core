@@ -24,6 +24,14 @@ public class ItemForXP {
 			plugin.sendtoplayer(p, "手上的东西不够!");
 			return;
 		}
+		if (a < 0) {
+			plugin.sendtoplayer(p, "经验兑换物品功能暂未开放!");
+			return;
+		}
+		if (a == 0) {
+			plugin.sendtoplayer(p, "请输入非零数字!");
+			return;
+		}
 		is.setAmount(is.getAmount() - a);
 		Hero h = plugin.getheroesplugin().getCharacterManager().getHero(p);
 		h.addExp(xp * a, h.getHeroClass());

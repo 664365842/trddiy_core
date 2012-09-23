@@ -1,6 +1,6 @@
 package com.trddiy.by664365842;
-
 import org.bukkit.ChatColor;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,8 +13,10 @@ import org.bukkit.inventory.PlayerInventory;
 
 public class RestrictItem implements Listener{
 	private Core plugin;
+	private SignCommand sm;
 	public RestrictItem(Core plugin) {
 		this.plugin = plugin;
+		sm = new SignCommand(plugin);
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 	//定义颜色
@@ -52,6 +54,11 @@ public class RestrictItem implements Listener{
 	@EventHandler
 	public void onPlayerInteractEvent(PlayerInteractEvent event){//当玩家做出动作时 同上
 		Player player = event.getPlayer();
+/*		if(event.getClickedBlock().getTypeId()== 323){
+		if(Core.permission.has(player, "trd.exp.sign")){
+			sm.handlesign(player,(Sign)(event.getClickedBlock()));
+		}
+		}*/
 		if (!player.hasPermission("itemmanager.admin")) {
 			int a = 0;
 			for(int i =0 ;i<9 ;i++){
