@@ -1,0 +1,13 @@
+#开启单武器限定
+Onlyoneweapon: true
+#开启伤害改变(坑爹中)
+Changedamage: false
+#开启武器限制
+RestrictItem: true
+#前缀替换
+Addprefix: true
+ItemForXP:
+    Item: 283
+    XP: 100
+MobArena:
+    multiply: 500

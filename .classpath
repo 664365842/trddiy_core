@@ -3,14 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/GQM/Desktop/server/1.25/craftbukkit-1.2.5-R4.1.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="http://jd.bukkit.org/apidocs/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/GQM/Desktop/server/1.25/plugins/Vault.jar"/>
-	<classpathentry kind="lib" path="C:/Users/GQM/Desktop/server/1.25/mods/BalkonsWeaponMod1.2.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/GQM/Desktop/mc new server/trddiy_breakthrough_edition/plugins/Heroes.jar"/>
-	<classpathentry kind="lib" path="C:/Users/GQM/Desktop/mc new server/MobArena.jar"/>
+	<classpathentry kind="lib" path="F:/服务端/craftbukkit-1.2.5-FML-R4.1-SNAPSHOT-76.jar"/>
+	<classpathentry kind="lib" path="F:/服务端/plugins/Heroes.jar"/>
+	<classpathentry kind="lib" path="F:/服务端/plugins/MobArena - unofficial fix.jar"/>
+	<classpathentry kind="lib" path="F:/服务端/plugins/Vault.jar"/>
+	<classpathentry kind="lib" path="F:/服务端/mods/BalkonsWeaponMod1.2.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
