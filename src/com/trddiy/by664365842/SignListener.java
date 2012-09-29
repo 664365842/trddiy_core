@@ -13,6 +13,7 @@ public class SignListener implements Listener {
 	private Core plugin;
 	private ItemForXP ifx;
 	private static String name = ChatColor.BLUE + "[经验兑换]";
+
 	// 构造
 	public SignListener(Core plugin) {
 		this.plugin = plugin;

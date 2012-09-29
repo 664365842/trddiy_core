@@ -68,10 +68,12 @@ public class MobArenaListener implements Listener {
 		chm = plugin.getheroesplugin().getCharacterManager();
 		Hero h = chm.getHero(p);
 		final String s = h.getHeroClass().getName();
-		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+		plugin.getServer().getScheduler()
+				.scheduleSyncDelayedTask(plugin, new Runnable() {
 					public void run() {
-						//plugin.sendtoplayer(p, a.getArenaPlayer(p).toString());
-						plugin.sendtoplayer(p, "检测到职业: " + ChatColor.GOLD+s);
+						// plugin.sendtoplayer(p,
+						// a.getArenaPlayer(p).toString());
+						plugin.sendtoplayer(p, "检测到职业: " + ChatColor.GOLD + s);
 						Map<String, ArenaClass> map = a.getClasses();
 						if (map.containsKey(s)) {
 							a.assignClass(p, s);

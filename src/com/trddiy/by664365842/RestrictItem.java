@@ -13,6 +13,7 @@ import org.bukkit.inventory.PlayerInventory;
 
 public class RestrictItem implements Listener {
 	private Core plugin;
+
 	public RestrictItem(Core plugin) {
 		this.plugin = plugin;
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
