@@ -41,7 +41,7 @@ public class CommandListener implements CommandExecutor {
 					if (args.length >= 2 && args[1] != null) {
 						ifx.getItem(p, Integer.valueOf(args[1]));
 					} else {
-						plugin.sendtoplayer(p, "请输入要用来兑换的物品数!");
+						plugin.sendtoplayer(p, "你无此命令的权限/你没有输入要兑换的数额.");
 					}
 				}
 				if (arg1.equals("help")) {
@@ -53,13 +53,23 @@ public class CommandListener implements CommandExecutor {
 				if (arg1.equals("xiaodai")) {
 					plugin.sendtoplayer(p, "抱歉,功能未开放.");
 				}
+				if(arg1.equals("bcast")){
+					if (args.length >= 2 && args[1] != null && Core.permission.has(p, "trd.bcast")) {
+						String s = args[1];
+						for(Player p2:plugin.getServer().getOnlinePlayers()){
+							plugin.getpcl().sendbroadcast(p2, s);
+						}
+				}else{
+					plugin.sendtoplayer(p, "你无此命令的权限/发送信息不能为空");
+				}
+				}
 			} else {
 				plugin.sendtoplayer(p, "===== Trddiy核心插件帮助 =====");
 				plugin.sendtoplayer(p, "/trd exp 进行经验兑换");
 				plugin.sendtoplayer(p, "/trd help 打开帮助界面");
 				plugin.sendtoplayer(p, "/trd xiaodai 获得小呆的节操");
 			}
-		}
 		return true;
 	}
+}
 }

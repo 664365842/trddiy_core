@@ -19,6 +19,7 @@ import com.herocraftonline.heroes.Heroes;
 public class Core extends JavaPlugin {
 	private CommandListener cmd;
 	public Heroes hr;
+	public PluginChannel pcl;
 	public ArenaMaster am;
 	public static Configuration config;
 	public Core plugin;
@@ -45,6 +46,7 @@ public class Core extends JavaPlugin {
 			new RestrictItem(this);
 		}
 		new SignListener(this);
+		pcl = new PluginChannel(this);//加载频道
 		sendtoserver("单武器限定: " + a);
 		sendtoserver("武器限制: " + c);
 		setupHeroes();// 加载heroes相关
@@ -114,7 +116,9 @@ public class Core extends JavaPlugin {
 	public Heroes getheroesplugin() {
 		return hr;
 	}
-
+	public PluginChannel getpcl(){
+		return pcl;
+	}
 	/**
 	 * 向玩家发送带前缀的信息
 	 * 
