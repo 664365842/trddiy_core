@@ -1,6 +1,8 @@
 package com.trddiy.by664365842;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -40,7 +42,24 @@ public class RestrictItem implements Listener {
 						+ itemstackn.getTypeId())) {// 检查是否有持有此物品的权限
 					a++;
 					// 删除物品
-					inv.clear(i);
+					inv.setItem(i, null);
+					
+					boolean removed = false;
+					
+					for(int j=9;j<36;j++){
+						if(inv.getItem(j)==null){
+							inv.setItem(j, itemstackn);
+							removed = true;
+							break;
+						}
+					}
+					
+					if(removed==false){
+						Location pl = player.getLocation();
+						World world = player.getWorld();
+						world.dropItemNaturally(pl, itemstackn);
+					}
+					
 					plugin.sendtoplayer(
 							player,
 							"你还没有受过训练使用 " + gold
@@ -71,7 +90,23 @@ public class RestrictItem implements Listener {
 				if (player.hasPermission("itemmanager.item."
 						+ itemstackn.getTypeId())) {
 					a++;
-					inv.clear(i);
+					inv.setItem(i, null);
+					
+					boolean removed = false;
+					
+					for(int j=9;j<36;j++){
+						if(inv.getItem(j)==null){
+							inv.setItem(j, itemstackn);
+							removed = true;
+							break;
+						}
+					}
+					
+					if(removed==false){
+						Location pl = player.getLocation();
+						World world = player.getWorld();
+						world.dropItemNaturally(pl, itemstackn);
+					}
 					plugin.sendtoplayer(
 							player,
 							"你还没有受过训练使用 " + gold
@@ -95,6 +130,9 @@ public class RestrictItem implements Listener {
 			// player.sendMessage(String.valueOf(itemstackn.getTypeId()));
 			if (player.hasPermission("itemmanager.item."
 					+ item.getItemStack().getTypeId())) {
+				Location pl = player.getLocation();
+				World world = player.getWorld();
+				world.dropItemNaturally(pl, item.getItemStack());
 				item.remove();
 				plugin.sendtoplayer(
 						player,

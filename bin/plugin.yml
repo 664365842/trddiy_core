@@ -1,0 +1,8 @@
+name: trddiy_core
+main: com.trddiy.by664365842.Core
+author: 664365842
+description: 天然呆核心插件
+version: 1.4
+commands:
+   trd:
+      description: 天然呆核心插件的主命令.
