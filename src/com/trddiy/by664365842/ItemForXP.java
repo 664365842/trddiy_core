@@ -39,7 +39,7 @@ public class ItemForXP {
 			return;
 		}
 		if (is.getAmount() - a == 0) {
-			p.getInventory().remove(is);
+			p.getInventory().removeItem(is);
 		} else {
 			is.setAmount(is.getAmount() - a);
 		}

@@ -44,7 +44,7 @@ public class SignListener implements Listener {
 	public void onplayerplaceblockevent(SignChangeEvent event) {// 检查牌子创建
 		Player p = event.getPlayer();
 		String[] lines = event.getLines();
-		if(lines[0].compareTo(name)!=0){
+		if(lines[0].compareTo("[经验兑换]")!=0){
 			return;
 		}
 		if (Core.permission.has(p, "trd.sign.create")) {
