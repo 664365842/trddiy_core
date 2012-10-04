@@ -15,6 +15,7 @@ public class PluginChannel {
 	String bosshealth = "bosshp|";
 	String bcast = "bcast|";
 	String cmes = "cd|";
+	String mana = "mana|";
 	public PluginChannel(Core plugin){
 		this.plugin = plugin;
 		//注册插件频道
@@ -61,6 +62,17 @@ public class PluginChannel {
 		int health = he.getHealth();
 		sendpluginmessage(p, bosshealth+health+"|"+maxhealth);
 	}
+	}
+	/**
+	 * 向客户端发送魔法值
+	 * @param p 是玩家
+	 */
+	public void sendmana(Hero h){
+		if(h.getPlayer().getListeningPluginChannels().contains(channel)){
+			sendpluginmessage(h.getPlayer(),mana+h.getMana()+"|"+h.getMaxMana());
+		}else{
+			return;
+		}
 	}
 	public void sendpluginmessage(Player p,String message){
 		p.sendPluginMessage(plugin,channel , message.getBytes(java.nio.charset.Charset.forName("UTF-8")));
