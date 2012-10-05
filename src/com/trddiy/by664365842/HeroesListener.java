@@ -7,7 +7,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 
+import com.herocraftonline.heroes.api.events.CharacterDamageEvent;
 import com.herocraftonline.heroes.api.events.ClassChangeEvent;
 import com.herocraftonline.heroes.api.events.HeroChangeLevelEvent;
 import com.herocraftonline.heroes.api.events.HeroRegainHealthEvent;
@@ -32,7 +34,7 @@ public class HeroesListener implements Listener {
 				plugin.getpcl().sendmana(plugin.getHero(p));
 				plugin.getpcl().sendhp(plugin.getHero(p));
 			}
-		},1L);
+		},100L);
 	}
 	@EventHandler
 	public void onskilluse(SkillUseEvent event){
@@ -60,14 +62,25 @@ public class HeroesListener implements Listener {
 			plugin.getpcl().sendhp(plugin.getHero(p),-event.getDamage());
 		}
 	}
-/*	@EventHandler
+	@EventHandler
 	public void oncharacterdamage(CharacterDamageEvent event){
 		Entity e = event.getEntity();
 		if(e instanceof Player){
 			Player p = (Player)e;
-			plugin.getpcl().sendhp(plugin.getHero(p));
+			plugin.getpcl().sendhp(plugin.getHero(p),-event.getDamage());
 		}
-	}*/
+	}
+	@EventHandler
+	public void onreborn(PlayerRespawnEvent event){
+		final Player p = event.getPlayer();
+		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+			public void run(){
+				plugin.getpcl().sendcd(p);
+				plugin.getpcl().sendmana(plugin.getHero(p));
+				plugin.getpcl().sendhp(plugin.getHero(p));
+			}
+		},1L);
+	}
 	@EventHandler
 	public void onlevelup(HeroChangeLevelEvent event){
 		Hero h = event.getHero();

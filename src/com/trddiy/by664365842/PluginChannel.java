@@ -16,7 +16,7 @@ public class PluginChannel {
 	String bcast = "bcast:";
 	String cmes = "cd:";
 	String mana = "mana:";
-	String hp = "hp";
+	String hp = "hp:";
 	public PluginChannel(Core plugin){
 		this.plugin = plugin;
 		//×¢²á²å¼þÆµµÀ
@@ -93,6 +93,9 @@ public class PluginChannel {
 		    sendmana=h.getMaxMana();
 		if(h.getPlayer().getListeningPluginChannels().contains(channel)){
 			sendpluginmessage(h.getPlayer(),mana+sendmana+":"+h.getMaxMana());
+			if(plugin.debug = true){
+				plugin.sendtoserver("mana: "+h.getPlayer().getDisplayName());
+			}
 		}else{
 			return;
 		}
@@ -115,6 +118,9 @@ public class PluginChannel {
 			sendhp=0;
 		if(hero.getPlayer().getListeningPluginChannels().contains(channel)){
 			sendpluginmessage(hero.getPlayer(),hp+sendhp+":"+hero.getMaxHealth());
+			if(plugin.debug = true){
+				plugin.sendtoserver("hp: "+hero.getPlayer().getDisplayName());
+			}
 		}else{
 			return;
 		}

@@ -43,7 +43,7 @@ public class ItemForXP {
 		} else {
 			is.setAmount(is.getAmount() - a);
 		}
-		h.addExp(xp * a, h.getHeroClass());
+		h.addExp(xp * a, h.getHeroClass(),h.getPlayer().getLocation());
 		h.syncExperience();
 		plugin.sendtoplayer(p, "ฤใสนำร " + ChatColor.GREEN + a + ChatColor.WHITE
 				+ " ธ๖ " + ChatColor.GREEN

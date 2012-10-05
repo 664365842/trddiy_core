@@ -33,6 +33,7 @@ public class CommandListener implements CommandExecutor {
 					plugin.debug = false;
 				}
 				plugin.sendtoserver("调试状态更改为: "+plugin.debug);
+				return true;
 			}
 			plugin.sendtoserver("错误!本命令不支持控制台使用!");
 			return true;
