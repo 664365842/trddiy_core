@@ -12,10 +12,11 @@ import com.herocraftonline.heroes.characters.Hero;
 public class PluginChannel {
 	public Core plugin;
 	private final String channel ="trd_core";
-	String bosshealth = "bosshp|";
-	String bcast = "bcast|";
-	String cmes = "cd|";
-	String mana = "mana|";
+	String bosshealth = "bosshp:";
+	String bcast = "bcast:";
+	String cmes = "cd:";
+	String mana = "mana:";
+	String hp = "hp";
 	public PluginChannel(Core plugin){
 		this.plugin = plugin;
 		//×¢²á²å¼þÆµµÀ
@@ -32,7 +33,10 @@ public class PluginChannel {
 			Set<String> names = cds.keySet();
 			for(String s : names){
 				long cd = cds.get(s);
-				sendpluginmessage(p, cmes+s+"|"+cd);
+				sendpluginmessage(p, cmes+s+":"+cd);
+				if(plugin.debug = true){
+					plugin.sendtoserver("cd: "+p.getDisplayName());
+				}
 			}
 		}else{
 			return;
@@ -46,6 +50,9 @@ public class PluginChannel {
 	public void sendbroadcast(Player p,String s){
 		if(p.getListeningPluginChannels().contains(channel)){
 			sendbroadcast(p, bcast+s);
+			if(plugin.debug = true){
+				plugin.sendtoserver("bcast: "+p.getDisplayName());
+			}
 		}else{
 			return;
 		}
@@ -60,7 +67,10 @@ public class PluginChannel {
 		CharacterTemplate he = plugin.getheroesplugin().getCharacterManager().getCharacter(e);
 		int maxhealth = he.getMaxHealth();
 		int health = he.getHealth();
-		sendpluginmessage(p, bosshealth+health+"|"+maxhealth);
+		sendpluginmessage(p, bosshealth+health+":"+maxhealth);
+		if(plugin.debug = true){
+			plugin.sendtoserver("bosshealth: "+p.getDisplayName());
+		}
 	}
 	}
 	/**
@@ -69,7 +79,42 @@ public class PluginChannel {
 	 */
 	public void sendmana(Hero h){
 		if(h.getPlayer().getListeningPluginChannels().contains(channel)){
-			sendpluginmessage(h.getPlayer(),mana+h.getMana()+"|"+h.getMaxMana());
+			sendpluginmessage(h.getPlayer(),mana+h.getMana()+":"+h.getMaxMana());
+			if(plugin.debug = true){
+				plugin.sendtoserver("mana: "+h.getPlayer().getDisplayName());
+			}
+		}else{
+			return;
+		}
+	}
+	public void sendmana(Hero h, int amount) {
+		int sendmana = h.getMana()+amount;
+		if(sendmana>h.getMaxMana())
+		    sendmana=h.getMaxMana();
+		if(h.getPlayer().getListeningPluginChannels().contains(channel)){
+			sendpluginmessage(h.getPlayer(),mana+sendmana+":"+h.getMaxMana());
+		}else{
+			return;
+		}
+	}
+	public void sendhp(Hero h){
+		if(h.getPlayer().getListeningPluginChannels().contains(channel)){
+			sendpluginmessage(h.getPlayer(),hp+h.getHealth()+":"+h.getMaxHealth());
+			if(plugin.debug = true){
+				plugin.sendtoserver("hp: "+h.getPlayer().getDisplayName());
+			}
+		}else{
+			return;
+		}
+	}
+	public void sendhp(Hero hero,int amount) {
+		int sendhp = hero.getHealth()+amount;
+		if(sendhp>hero.getMaxHealth())
+			sendhp = hero.getMaxHealth();
+		if(sendhp<0)
+			sendhp=0;
+		if(hero.getPlayer().getListeningPluginChannels().contains(channel)){
+			sendpluginmessage(hero.getPlayer(),hp+sendhp+":"+hero.getMaxHealth());
 		}else{
 			return;
 		}

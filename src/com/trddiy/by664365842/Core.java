@@ -15,8 +15,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.garbagemule.MobArena.MobArena;
 import com.garbagemule.MobArena.framework.ArenaMaster;
 import com.herocraftonline.heroes.Heroes;
+import com.herocraftonline.heroes.characters.Hero;
 
 public class Core extends JavaPlugin {
+	public Boolean debug = false;
 	private CommandListener cmd;
 	public Heroes hr;
 	public PluginChannel pcl;
@@ -51,6 +53,7 @@ public class Core extends JavaPlugin {
 		sendtoserver("武器限制: " + c);
 		setupHeroes();// 加载heroes相关
 		setupMobArenaListener();// 加载ma
+		new HeroesListener(this);
 		cmd = new CommandListener(this);
 		getCommand("trd").setExecutor(cmd);
 		sendtoserver(" v" + getDescription().getVersion() + "by:"
@@ -140,8 +143,10 @@ public class Core extends JavaPlugin {
 	 *            是要发送的字符串
 	 */
 	public void sendtoserver(String s) {
-		String title = ChatColor.GREEN + "[" + ChatColor.GOLD + "Trd核心插件"
-				+ ChatColor.GREEN + "] " + ChatColor.WHITE;
+		String title = "[Trd核心插件]";
 		this.log.info(title + s);
+	}
+	public Hero getHero(Player p){
+		return getheroesplugin().getCharacterManager().getHero(p);
 	}
 }
