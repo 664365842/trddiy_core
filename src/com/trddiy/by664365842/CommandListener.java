@@ -24,15 +24,14 @@ public class CommandListener implements CommandExecutor {
 				plugin.sendtoserver("设置已由控制台重载.");
 				return true;
 			}
-			if (arg1.equals("debug")
-					) {
-				Boolean debug = plugin.debug;
-				if(debug==false){
-					plugin.debug = true;
-				}else{
-					plugin.debug = false;
+			if (arg1.equals("debug")) {
+				Boolean debug = Core.debug;
+				if (debug == false) {
+					Core.debug = true;
+				} else {
+					Core.debug = false;
 				}
-				plugin.sendtoserver("调试状态更改为: "+plugin.debug);
+				plugin.sendtoserver("调试状态更改为: " + Core.debug);
 				return true;
 			}
 			plugin.sendtoserver("错误!本命令不支持控制台使用!");
@@ -47,16 +46,16 @@ public class CommandListener implements CommandExecutor {
 					plugin.sendtoserver("设置已由玩家 " + p.getName() + " 重载");
 					plugin.sendtoplayer(p, "设置已重载");
 				}
-				if (arg1.equals("debug")
-						&& Core.permission.has(p, "trd.debug")) {
-					Boolean debug = plugin.debug;
-					if(debug==false){
-						plugin.debug = true;
-					}else{
-						plugin.debug = false;
+				if (arg1.equals("debug") && Core.permission.has(p, "trd.debug")) {
+					Boolean debug = Core.debug;
+					if (debug == false) {
+						Core.debug = true;
+					} else {
+						Core.debug = false;
 					}
-					plugin.sendtoserver("调试状态由 " + p.getName() + " 更改为: "+plugin.debug);
-					plugin.sendtoplayer(p, "调试状态已改为: "+plugin.debug);
+					plugin.sendtoserver("调试状态由 " + p.getName() + " 更改为: "
+							+ Core.debug);
+					plugin.sendtoplayer(p, "调试状态已改为: " + Core.debug);
 				}
 				if (arg1.equals("exp") && Core.permission.has(p, "trd.exp")) {
 					// plugin.sendtoplayer(p,"抱歉,功能未开放");
