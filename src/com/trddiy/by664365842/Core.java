@@ -15,10 +15,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.garbagemule.MobArena.MobArena;
 import com.garbagemule.MobArena.framework.ArenaMaster;
 import com.herocraftonline.heroes.Heroes;
+import com.herocraftonline.heroes.characters.Hero;
 
 public class Core extends JavaPlugin {
+	public Boolean debug = false;
 	private CommandListener cmd;
 	public Heroes hr;
+	public PluginChannel pcl;
 	public ArenaMaster am;
 	public static Configuration config;
 	public Core plugin;
@@ -45,10 +48,12 @@ public class Core extends JavaPlugin {
 			new RestrictItem(this);
 		}
 		new SignListener(this);
+		pcl = new PluginChannel(this);//加载频道
 		sendtoserver("单武器限定: " + a);
 		sendtoserver("武器限制: " + c);
 		setupHeroes();// 加载heroes相关
 		setupMobArenaListener();// 加载ma
+		new HeroesListener(this);
 		cmd = new CommandListener(this);
 		getCommand("trd").setExecutor(cmd);
 		sendtoserver(" v" + getDescription().getVersion() + "by:"
@@ -114,24 +119,34 @@ public class Core extends JavaPlugin {
 	public Heroes getheroesplugin() {
 		return hr;
 	}
-
+	public PluginChannel getpcl(){
+		return pcl;
+	}
 	/**
 	 * 向玩家发送带前缀的信息
-	 * @param p 是玩家
-	 * @param s 是要发送的字符串
+	 * 
+	 * @param p
+	 *            是玩家
+	 * @param s
+	 *            是要发送的字符串
 	 */
 	public void sendtoplayer(Player p, String s) {
 		String title = ChatColor.GREEN + "[" + ChatColor.GOLD + "Trd核心插件"
 				+ ChatColor.GREEN + "] " + ChatColor.WHITE;
 		p.sendMessage(title + s);
 	}
+
 	/**
 	 * 向控制台发送带前缀的信息
-	 * @param s 是要发送的字符串
+	 * 
+	 * @param s
+	 *            是要发送的字符串
 	 */
 	public void sendtoserver(String s) {
-		String title = ChatColor.GREEN + "[" + ChatColor.GOLD + "Trd核心插件"
-				+ ChatColor.GREEN + "] " + ChatColor.WHITE;
+		String title = "[Trd核心插件]";
 		this.log.info(title + s);
+	}
+	public Hero getHero(Player p){
+		return getheroesplugin().getCharacterManager().getHero(p);
 	}
 }

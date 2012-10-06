@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bukkit.ChatColor;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,8 +13,12 @@ import com.garbagemule.MobArena.ArenaClass;
 import com.garbagemule.MobArena.events.ArenaPlayerJoinEvent;
 import com.garbagemule.MobArena.events.NewWaveEvent;
 import com.garbagemule.MobArena.framework.Arena;
+import com.garbagemule.MobArena.waves.MABoss;
+import com.garbagemule.MobArena.waves.Wave;
 import com.garbagemule.MobArena.waves.enums.WaveType;
+import com.garbagemule.MobArena.waves.types.BossWave;
 import com.herocraftonline.heroes.characters.CharacterManager;
+import com.herocraftonline.heroes.characters.CharacterTemplate;
 import com.herocraftonline.heroes.characters.Hero;
 
 public class MobArenaListener implements Listener {
@@ -51,7 +56,7 @@ public class MobArenaListener implements Listener {
 		chm = plugin.getheroesplugin().getCharacterManager();
 		int waven = plugin.getConfig().getInt("MobArena.multiply");
 		Hero h = chm.getHero(p);
-		h.addExp(wn * waven, h.getHeroClass());
+		h.addExp(wn * waven, h.getHeroClass(),h.getPlayer().getLocation());
 		h.syncExperience();
 		plugin.sendtoplayer(p, "你获得了奖励: " + wn * waven + " 经验");
 	}
@@ -68,10 +73,12 @@ public class MobArenaListener implements Listener {
 		chm = plugin.getheroesplugin().getCharacterManager();
 		Hero h = chm.getHero(p);
 		final String s = h.getHeroClass().getName();
-		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+		plugin.getServer().getScheduler()
+				.scheduleSyncDelayedTask(plugin, new Runnable() {
 					public void run() {
-						//plugin.sendtoplayer(p, a.getArenaPlayer(p).toString());
-						plugin.sendtoplayer(p, "检测到职业: " + ChatColor.GOLD+s);
+						// plugin.sendtoplayer(p,
+						// a.getArenaPlayer(p).toString());
+						plugin.sendtoplayer(p, "检测到职业: " + ChatColor.GOLD + s);
 						Map<String, ArenaClass> map = a.getClasses();
 						if (map.containsKey(s)) {
 							a.assignClass(p, s);

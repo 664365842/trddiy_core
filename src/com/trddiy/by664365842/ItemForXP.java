@@ -34,16 +34,16 @@ public class ItemForXP {
 			return;
 		}
 		Hero h = plugin.getheroesplugin().getCharacterManager().getHero(p);
-		if(h.getLevel(h.getHeroClass()) == h.getHeroClass().getMaxLevel()){
+		if (h.getLevel(h.getHeroClass()) == h.getHeroClass().getMaxLevel()) {
 			plugin.sendtoplayer(p, "当前职业已满级!");
 			return;
 		}
-		if(is.getAmount() - a == 0){
-			p.getInventory().remove(is);
-		}else{
-		is.setAmount(is.getAmount() - a);
+		if (is.getAmount() - a == 0) {
+			p.getInventory().removeItem(is);
+		} else {
+			is.setAmount(is.getAmount() - a);
 		}
-		h.addExp(xp * a, h.getHeroClass());
+		h.addExp(xp * a, h.getHeroClass(),h.getPlayer().getLocation());
 		h.syncExperience();
 		plugin.sendtoplayer(p, "你使用 " + ChatColor.GREEN + a + ChatColor.WHITE
 				+ " 个 " + ChatColor.GREEN

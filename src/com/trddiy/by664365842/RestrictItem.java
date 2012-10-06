@@ -15,6 +15,7 @@ import org.bukkit.inventory.PlayerInventory;
 
 public class RestrictItem implements Listener {
 	private Core plugin;
+
 	public RestrictItem(Core plugin) {
 		this.plugin = plugin;
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -43,23 +44,23 @@ public class RestrictItem implements Listener {
 					a++;
 					// 删除物品
 					inv.setItem(i, null);
-					
+
 					boolean removed = false;
-					
-					for(int j=9;j<36;j++){
-						if(inv.getItem(j)==null){
+
+					for (int j = 9; j < 36; j++) {
+						if (inv.getItem(j) == null) {
 							inv.setItem(j, itemstackn);
 							removed = true;
 							break;
 						}
 					}
-					
-					if(removed==false){
+
+					if (removed == false) {
 						Location pl = player.getLocation();
 						World world = player.getWorld();
 						world.dropItemNaturally(pl, itemstackn);
 					}
-					
+
 					plugin.sendtoplayer(
 							player,
 							"你还没有受过训练使用 " + gold
@@ -91,18 +92,18 @@ public class RestrictItem implements Listener {
 						+ itemstackn.getTypeId())) {
 					a++;
 					inv.setItem(i, null);
-					
+
 					boolean removed = false;
-					
-					for(int j=9;j<36;j++){
-						if(inv.getItem(j)==null){
+
+					for (int j = 9; j < 36; j++) {
+						if (inv.getItem(j) == null) {
 							inv.setItem(j, itemstackn);
 							removed = true;
 							break;
 						}
 					}
-					
-					if(removed==false){
+
+					if (removed == false) {
 						Location pl = player.getLocation();
 						World world = player.getWorld();
 						world.dropItemNaturally(pl, itemstackn);
