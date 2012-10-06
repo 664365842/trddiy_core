@@ -110,7 +110,7 @@ public class PluginChannel {
 			return;
 		}
 	}
-	public void sendhp(Hero hero,int amount) {
+/*	public void sendhp(Hero hero,int amount) {
 		int sendhp = hero.getHealth()+amount;
 		if(sendhp>hero.getMaxHealth())
 			sendhp = hero.getMaxHealth();
@@ -124,7 +124,7 @@ public class PluginChannel {
 		}else{
 			return;
 		}
-	}
+	}*/
 	public void sendpluginmessage(Player p,String message){
 		p.sendPluginMessage(plugin,channel , message.getBytes(java.nio.charset.Charset.forName("UTF-8")));
 	}

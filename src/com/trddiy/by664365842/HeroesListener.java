@@ -50,24 +50,39 @@ public class HeroesListener implements Listener {
 	public void onweapondamage(WeaponDamageEvent event){
 		Entity e = event.getEntity();
 		if(e instanceof Player){
-			Player p = (Player)e;
-			plugin.getpcl().sendhp(plugin.getHero(p),-event.getDamage());
+			final Player player = (Player) event.getEntity();		
+			plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+				public void run(){
+					plugin.getpcl().sendmana(plugin.getHero(player));
+					plugin.getpcl().sendhp(plugin.getHero(player));
+				}
+			},1L);
 		}
 	}
 	@EventHandler
 	public void onskilldamage(SkillDamageEvent event){
 		Entity e = event.getEntity();
 		if(e instanceof Player){
-			Player p = (Player)e;
-			plugin.getpcl().sendhp(plugin.getHero(p),-event.getDamage());
+			final Player player = (Player) event.getEntity();		
+			plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+				public void run(){
+					plugin.getpcl().sendmana(plugin.getHero(player));
+					plugin.getpcl().sendhp(plugin.getHero(player));
+				}
+			},1L);
 		}
 	}
 	@EventHandler
 	public void oncharacterdamage(CharacterDamageEvent event){
 		Entity e = event.getEntity();
 		if(e instanceof Player){
-			Player p = (Player)e;
-			plugin.getpcl().sendhp(plugin.getHero(p),-event.getDamage());
+			final Player player = (Player) event.getEntity();		
+			plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+				public void run(){
+					plugin.getpcl().sendmana(plugin.getHero(player));
+					plugin.getpcl().sendhp(plugin.getHero(player));
+				}
+			},1L);
 		}
 	}
 	@EventHandler
@@ -84,40 +99,46 @@ public class HeroesListener implements Listener {
 	@EventHandler
 	public void onlevelup(HeroChangeLevelEvent event){
 		Hero h = event.getHero();
-		int addmana = h.getMaxMana()-h.getMana();
-		int addhp = h.getMaxHealth()-h.getHealth();
-		if(event.getFrom()>event.getTo()){
-			plugin.getpcl().sendmana(h);
-			plugin.getpcl().sendhp(h);
-		}
-		else{
-			plugin.getpcl().sendmana(h,addmana);
-			plugin.getpcl().sendhp(h,addhp);
-		}
+		final Player player = h.getPlayer();		
+		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+			public void run(){
+				plugin.getpcl().sendmana(plugin.getHero(player));
+				plugin.getpcl().sendhp(plugin.getHero(player));
+			}
+		},1L);
 	}
-	
+
 	@EventHandler
 	public void onClassChange(ClassChangeEvent event){
 		Hero h = event.getHero();
-		int addmana = h.getMaxMana()-h.getMana();
-		int addhp = h.getMaxHealth()-h.getHealth();
-		//h.setHeroClass(event.getTo(), false);
-		h.setMana(0);
-		plugin.getpcl().sendmana(h,addmana);
-		plugin.getpcl().sendhp(h,addhp);
+		final Player p = h.getPlayer();
+		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+			public void run(){
+				plugin.getpcl().sendmana(plugin.getHero(p));
+				plugin.getpcl().sendhp(plugin.getHero(p));
+			}
+		},1L);
 	}
 	@EventHandler
 	public void onHpRegain(HeroRegainHealthEvent event){
-		//System.out.println("回复");
-		plugin.getpcl().sendhp(event.getHero(),event.getAmount());
+		final Player p = event.getHero().getPlayer();
+		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+			public void run(){
+				plugin.getpcl().sendmana(plugin.getHero(p));
+				plugin.getpcl().sendhp(plugin.getHero(p));
+			}
+		},1L);
 	}
 	@EventHandler
 	public void onHealthRegain(EntityRegainHealthEvent event){
 		if(event.getEntityType()!=EntityType.PLAYER)
 			return;
-		Player player = (Player) event.getEntity();
-		Hero hero = plugin.getheroesplugin().getCharacterManager().getHero(player);
-		//System.out.println("自然回复");
-		plugin.getpcl().sendhp(hero,hero.getMaxHealth()/20);
+		final Player player = (Player) event.getEntity();		
+		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+			public void run(){
+				plugin.getpcl().sendmana(plugin.getHero(player));
+				plugin.getpcl().sendhp(plugin.getHero(player));
+			}
+		},1L);
 	}
 }

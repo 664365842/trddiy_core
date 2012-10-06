@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bukkit.ChatColor;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,12 +12,8 @@ import com.garbagemule.MobArena.ArenaClass;
 import com.garbagemule.MobArena.events.ArenaPlayerJoinEvent;
 import com.garbagemule.MobArena.events.NewWaveEvent;
 import com.garbagemule.MobArena.framework.Arena;
-import com.garbagemule.MobArena.waves.MABoss;
-import com.garbagemule.MobArena.waves.Wave;
 import com.garbagemule.MobArena.waves.enums.WaveType;
-import com.garbagemule.MobArena.waves.types.BossWave;
 import com.herocraftonline.heroes.characters.CharacterManager;
-import com.herocraftonline.heroes.characters.CharacterTemplate;
 import com.herocraftonline.heroes.characters.Hero;
 
 public class MobArenaListener implements Listener {
