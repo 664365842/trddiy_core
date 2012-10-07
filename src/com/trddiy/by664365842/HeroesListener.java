@@ -27,7 +27,7 @@ public class HeroesListener implements Listener {
 		this.plugin = plugin;
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
-
+	//玩家登陆 发送cd hp mp
 	@EventHandler
 	public void onplayerlogin(PlayerLoginEvent event) {
 		final Player p = event.getPlayer();
@@ -40,19 +40,19 @@ public class HeroesListener implements Listener {
 					}
 				}, 100L);
 	}
-
+//玩家使用技能 发送cd
 	@EventHandler
 	public void onskilluse(SkillUseEvent event) {
 		Player p = event.getPlayer();
 		plugin.getpcl().sendcd(p);
 	}
-
+//玩家恢复魔法 发送mp
 	@EventHandler
 	public void onmanaregain(HeroRegainManaEvent event) {
 		Hero h = event.getHero();
 		plugin.getpcl().sendmana(h, event.getAmount());
 	}
-
+//武器伤害 发送hp mp
 	@EventHandler
 	public void onweapondamage(WeaponDamageEvent event) {
 		Entity e = event.getEntity();
@@ -67,6 +67,7 @@ public class HeroesListener implements Listener {
 					}, 1L);
 		}
 	}
+	//玩家死亡 发送cd hp mp
 	@EventHandler
 	public void ondeath(PlayerDeathEvent event){
 		final Player p = event.getEntity();
@@ -79,6 +80,7 @@ public class HeroesListener implements Listener {
 					}
 				}, 1L);
 	}
+	//玩家技能造成伤害 发送hp mp
 	@EventHandler
 	public void onskilldamage(SkillDamageEvent event) {
 		Entity e = event.getEntity();
@@ -93,7 +95,7 @@ public class HeroesListener implements Listener {
 					}, 1L);
 		}
 	}
-
+//自然伤害 发送hp mp
 	@EventHandler
 	public void oncharacterdamage(CharacterDamageEvent event) {
 		Entity e = event.getEntity();
@@ -108,7 +110,7 @@ public class HeroesListener implements Listener {
 					}, 1L);
 		}
 	}
-
+//重生 发送cd hp mp
 	@EventHandler
 	public void onreborn(PlayerRespawnEvent event) {
 		final Player p = event.getPlayer();
@@ -121,7 +123,7 @@ public class HeroesListener implements Listener {
 					}
 				}, 1L);
 	}
-
+//升级 发送hp mp
 	@EventHandler
 	public void onlevelup(HeroChangeLevelEvent event) {
 		Hero h = event.getHero();
@@ -134,7 +136,7 @@ public class HeroesListener implements Listener {
 					}
 				}, 1L);
 	}
-
+//改变职业 发送hp mp
 	@EventHandler
 	public void onClassChange(ClassChangeEvent event) {
 		Hero h = event.getHero();
@@ -147,7 +149,7 @@ public class HeroesListener implements Listener {
 					}
 				}, 1L);
 	}
-
+//玩家恢复生命 发送hp mp
 	@EventHandler
 	public void onHpRegain(HeroRegainHealthEvent event) {
 		final Player p = event.getHero().getPlayer();
@@ -159,7 +161,7 @@ public class HeroesListener implements Listener {
 					}
 				}, 1L);
 	}
-
+//玩家自然恢复生命(不知是否调用) 发送hp mp
 	@EventHandler
 	public void onHealthRegain(EntityRegainHealthEvent event) {
 		if (event.getEntityType() != EntityType.PLAYER)

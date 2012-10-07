@@ -50,5 +50,7 @@ public class ItemForXP {
 				+ is.getType().toString().toLowerCase() + ChatColor.WHITE
 				+ " 兑换了 " + ChatColor.GREEN + xp * a + ChatColor.WHITE
 				+ " 点经验.");
+		if(Core.debug == true)
+			plugin.sendtoserver(p.getDisplayName()+" "+xp*a+"EXP");
 	}
 }

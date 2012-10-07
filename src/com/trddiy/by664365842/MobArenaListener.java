@@ -32,6 +32,8 @@ public class MobArenaListener implements Listener {
 		Arena arena = event.getArena();
 		Set<Player> ap = arena.getPlayersInArena();
 		if (event.getWave().getType() == WaveType.BOSS) {
+			if(Core.debug == true)
+				plugin.sendtoserver("BossWave "+event.getWaveNumber());
 			for (Player p : ap) {
 				if (p != null) {
 					addexp(p, wn);
@@ -78,9 +80,13 @@ public class MobArenaListener implements Listener {
 						if (map.containsKey(s)) {
 							a.assignClass(p, s);
 							plugin.sendtoplayer(p, "设置职业成功.");
+							if(Core.debug == true)
+							plugin.sendtoserver(p.getDisplayName()+" "+s);
 						} else {
 							a.assignClass(p, "初心者");
 							plugin.sendtoplayer(p, "未找到相应职业,设置为初心者.");
+							if(Core.debug == true)
+							plugin.sendtoserver(p.getDisplayName()+" "+s);
 						}
 					}
 				}, 1L);
