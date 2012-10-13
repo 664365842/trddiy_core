@@ -3,10 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="F:/服务端/craftbukkit-1.2.5-FML-R4.1-SNAPSHOT-76.jar"/>
 	<classpathentry kind="lib" path="F:/服务端/plugins/Heroes.jar"/>
 	<classpathentry kind="lib" path="F:/服务端/plugins/MobArena - unofficial fix.jar"/>
+	<classpathentry kind="lib" path="F:/服务端/craftbukkit-1.2.5-FML-R4.1-SNAPSHOT-76.jar"/>
 	<classpathentry kind="lib" path="F:/服务端/plugins/Vault.jar"/>
-	<classpathentry kind="lib" path="F:/服务端/mods/BalkonsWeaponMod1.2.5.jar"/>
+	<classpathentry kind="lib" path="F:/服务端/plugins/EssentialsGroupManager.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

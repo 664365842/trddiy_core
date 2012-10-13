@@ -18,24 +18,23 @@ public class CommandListener implements CommandExecutor {
 			String[] args) {
 		if (!(sender instanceof Player)) {
 			String arg1 = args[0];
-			// ÖØÔØÃüÁî
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (arg1.equals("reload")) {
 				plugin.reloadConfig();
-				plugin.sendtoserver("ÉèÖÃÒÑÓÉ¿ØÖÆÌ¨ÖØÔØ.");
+				plugin.sendtoserver("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¿ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½.");
 				return true;
 			}
-			if (arg1.equals("debug")
-					) {
-				Boolean debug = plugin.debug;
-				if(debug==false){
-					plugin.debug = true;
-				}else{
-					plugin.debug = false;
+			if (arg1.equals("debug")) {
+				Boolean debug = Core.debug;
+				if (debug == false) {
+					Core.debug = true;
+				} else {
+					Core.debug = false;
 				}
-				plugin.sendtoserver("µ÷ÊÔ×´Ì¬¸ü¸ÄÎª: "+plugin.debug);
+				plugin.sendtoserver("ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½Îª: " + Core.debug);
 				return true;
 			}
-			plugin.sendtoserver("´íÎó!±¾ÃüÁî²»Ö§³Ö¿ØÖÆÌ¨Ê¹ÓÃ!");
+			plugin.sendtoserver("ï¿½ï¿½ï¿½ï¿½!ï¿½ï¿½ï¿½ï¿½ï¿½î²»Ö§ï¿½Ö¿ï¿½ï¿½ï¿½Ì¨Ê¹ï¿½ï¿½!");
 			return true;
 		} else {
 			Player p = (Player) sender;
@@ -44,53 +43,63 @@ public class CommandListener implements CommandExecutor {
 				if (arg1.equals("reload")
 						&& Core.permission.has(p, "trd.reload")) {
 					plugin.reloadConfig();
-					plugin.sendtoserver("ÉèÖÃÒÑÓÉÍæ¼Ò " + p.getName() + " ÖØÔØ");
-					plugin.sendtoplayer(p, "ÉèÖÃÒÑÖØÔØ");
+					plugin.sendtoserver("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ " + p.getName() + " ï¿½ï¿½ï¿½ï¿½");
+					plugin.sendtoplayer(p, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 				}
-				if (arg1.equals("debug")
-						&& Core.permission.has(p, "trd.debug")) {
-					Boolean debug = plugin.debug;
-					if(debug==false){
-						plugin.debug = true;
-					}else{
-						plugin.debug = false;
+				if (arg1.equals("debug") && Core.permission.has(p, "trd.debug")) {
+					Boolean debug = Core.debug;
+					if (debug == false) {
+						Core.debug = true;
+					} else {
+						Core.debug = false;
 					}
-					plugin.sendtoserver("µ÷ÊÔ×´Ì¬ÓÉ " + p.getName() + " ¸ü¸ÄÎª: "+plugin.debug);
-					plugin.sendtoplayer(p, "µ÷ÊÔ×´Ì¬ÒÑ¸ÄÎª: "+plugin.debug);
+					plugin.sendtoserver("ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ " + p.getName() + " ï¿½ï¿½ï¿½Îª: "
+							+ Core.debug);
+					plugin.sendtoplayer(p, "ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½Ñ¸ï¿½Îª: " + Core.debug);
 				}
 				if (arg1.equals("exp") && Core.permission.has(p, "trd.exp")) {
-					// plugin.sendtoplayer(p,"±§Ç¸,¹¦ÄÜÎ´¿ª·Å");
+					// plugin.sendtoplayer(p,"ï¿½ï¿½Ç¸,ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½");
 					if (args.length >= 2 && args[1] != null) {
 						ifx.getItem(p, Integer.valueOf(args[1]));
 					} else {
-						plugin.sendtoplayer(p, "ÄãÎÞ´ËÃüÁîµÄÈ¨ÏÞ/ÄãÃ»ÓÐÊäÈëÒª¶Ò»»µÄÊý¶î.");
+						plugin.sendtoplayer(p, "ï¿½ï¿½ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½/ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.");
 					}
 				}
 				if (arg1.equals("help")) {
-					plugin.sendtoplayer(p, "===== TrddiyºËÐÄ²å¼þ°ïÖú =====");
-					plugin.sendtoplayer(p, "/trd exp ½øÐÐ¾­Ñé¶Ò»»");
-					plugin.sendtoplayer(p, "/trd help ´ò¿ª°ïÖú½çÃæ");
-					plugin.sendtoplayer(p, "/trd xiaodai »ñµÃÐ¡´ôµÄ½Ú²Ù");
+					plugin.sendtoplayer(p, "===== Trddiyï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ =====");
+					plugin.sendtoplayer(p, "/trd exp ï¿½ï¿½ï¿½Ð¾ï¿½ï¿½ï¿½Ò»ï¿½");
+					plugin.sendtoplayer(p, "/trd help ï¿½ò¿ª°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+					plugin.sendtoplayer(p, "/trd xiaodai ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ä½Ú²ï¿½");
 				}
 				if (arg1.equals("xiaodai")) {
-					plugin.sendtoplayer(p, "±§Ç¸,¹¦ÄÜÎ´¿ª·Å.");
+					plugin.sendtoplayer(p, "ï¿½ï¿½Ç¸,ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½.");
 				}
 				if (arg1.equals("bcast")) {
 					if (args.length >= 2 && args[1] != null
 							&& Core.permission.has(p, "trd.bcast")) {
 						String s = args[1];
-						for (Player p2 : plugin.getServer().getOnlinePlayers()) {
+						Player[] ps= plugin.getServer().getOnlinePlayers();
+						for (Player p2 : ps) {
 							plugin.getpcl().sendbroadcast(p2, s);
 						}
-					} else {
-						plugin.sendtoplayer(p, "ÄãÎÞ´ËÃüÁîµÄÈ¨ÏÞ/·¢ËÍÐÅÏ¢²»ÄÜÎª¿Õ");
+					}
+					
+					else if(args.length==1){
+						String s = "";
+						Player[] ps= plugin.getServer().getOnlinePlayers();
+						for (Player p2 : ps) {
+							plugin.getpcl().sendbroadcast(p2, s);
+						}
+					}
+					else {
+						plugin.sendtoplayer(p, "ï¿½ï¿½ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½");
 					}
 				}
 			} else {
-				plugin.sendtoplayer(p, "===== TrddiyºËÐÄ²å¼þ°ïÖú =====");
-				plugin.sendtoplayer(p, "/trd exp ½øÐÐ¾­Ñé¶Ò»»");
-				plugin.sendtoplayer(p, "/trd help ´ò¿ª°ïÖú½çÃæ");
-				plugin.sendtoplayer(p, "/trd xiaodai »ñµÃÐ¡´ôµÄ½Ú²Ù");
+				plugin.sendtoplayer(p, "===== Trddiyï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ =====");
+				plugin.sendtoplayer(p, "/trd exp ï¿½ï¿½ï¿½Ð¾ï¿½ï¿½ï¿½Ò»ï¿½");
+				plugin.sendtoplayer(p, "/trd help ï¿½ò¿ª°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+				plugin.sendtoplayer(p, "/trd xiaodai ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ä½Ú²ï¿½");
 			}
 			return true;
 		}

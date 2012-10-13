@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bukkit.ChatColor;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,12 +12,8 @@ import com.garbagemule.MobArena.ArenaClass;
 import com.garbagemule.MobArena.events.ArenaPlayerJoinEvent;
 import com.garbagemule.MobArena.events.NewWaveEvent;
 import com.garbagemule.MobArena.framework.Arena;
-import com.garbagemule.MobArena.waves.MABoss;
-import com.garbagemule.MobArena.waves.Wave;
 import com.garbagemule.MobArena.waves.enums.WaveType;
-import com.garbagemule.MobArena.waves.types.BossWave;
 import com.herocraftonline.heroes.characters.CharacterManager;
-import com.herocraftonline.heroes.characters.CharacterTemplate;
 import com.herocraftonline.heroes.characters.Hero;
 
 public class MobArenaListener implements Listener {
@@ -37,6 +32,8 @@ public class MobArenaListener implements Listener {
 		Arena arena = event.getArena();
 		Set<Player> ap = arena.getPlayersInArena();
 		if (event.getWave().getType() == WaveType.BOSS) {
+			if(Core.debug == true)
+				plugin.sendtoserver("BossWave "+event.getWaveNumber());
 			for (Player p : ap) {
 				if (p != null) {
 					addexp(p, wn);
@@ -83,9 +80,13 @@ public class MobArenaListener implements Listener {
 						if (map.containsKey(s)) {
 							a.assignClass(p, s);
 							plugin.sendtoplayer(p, "设置职业成功.");
+							if(Core.debug == true)
+							plugin.sendtoserver(p.getDisplayName()+" "+s);
 						} else {
 							a.assignClass(p, "初心者");
 							plugin.sendtoplayer(p, "未找到相应职业,设置为初心者.");
+							if(Core.debug == true)
+							plugin.sendtoserver(p.getDisplayName()+" "+s);
 						}
 					}
 				}, 1L);
